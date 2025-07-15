@@ -1,22 +1,27 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity( { name: 'PROMOCION' })  // Cambiar al nombre real de la tabla si es distinto
 export class Promotion {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'ID_Promocion' })
   id: number;
 
-  @Column()
+  @Column( { name: 'Nombre' })
   title: string;
 
-  @Column({ type: 'text' })
+  @Column( { name: 'Descripcion', type: 'text' })
   description: string;
 
-  @Column('decimal', { precision: 5, scale: 2 })
+  @Column( { name: 'Descuento', type: 'decimal'})
   discount: number;
 
-  @Column({ type: 'date' })
+  @Column( { name: 'Fecha_Inicio', type: 'date' })
   startDate: string;
 
-  @Column({ type: 'date' })
+  @Column( { name: 'Fecha_Fin', type: 'date' })
   endDate: string;
+
+  @Column({ name: 'Estado', type: 'binary', length: 50 })
+  status: Buffer;
+
+
 }

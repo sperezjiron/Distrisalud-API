@@ -1,6 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './api/Usuarios/users.module';
+import { ProductsModule } from './api/Productos/products.module'; 
+import { PromotionsModule } from './api/Promociones/promotions.module'; 
+import { OrdersModule } from './api/Pedidos/orders.module'; 
+import { CustomersModule } from './api/Clientes/customers.module';
+import { AdminsModule } from './api/Admin/admins.module';
+import { CategoryModule } from './api/Categoria/category.module';
 
 @Module({
   imports: [
@@ -20,6 +26,12 @@ import { UsersModule } from './api/Usuarios/users.module';
        },
      }),
     UsersModule,
-   ],
-  })
+    ProductsModule,
+    PromotionsModule,
+    OrdersModule,
+    CustomersModule,
+    AdminsModule,
+    CategoryModule,
+  ],
+})
 export class AppModule {}

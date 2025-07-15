@@ -17,4 +17,6 @@ export class CreatePromotionDto {
 
   @IsDateString()
   endDate: string;
+
+  status: Buffer; // sin validadores, o con lógica personalizada
 }

@@ -10,7 +10,7 @@ import { Promotion } from './entities/promotion.entity';
 export class PromotionsService {
   constructor(
     @InjectRepository(Promotion)
-    private promotionsRepository: Repository<Promotion>,
+    private readonly promotionsRepository: Repository<Promotion>,
   ) {}
 
   create(createPromotionDto: CreatePromotionDto): Promise<Promotion> {

@@ -1,19 +1,19 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity({ name: 'ORDERS' })  // Cambiar al nombre real de la tabla si es distinto
+@Entity({ name: 'PEDIDO' })  // Cambiar al nombre real de la tabla si es distinto
 export class Order {
-  @PrimaryGeneratedColumn({ name: 'ID_Order' })  // Ajustá si es diferente
+  @PrimaryGeneratedColumn({ name: 'ID_Pedido' })  // Ajustá si es diferente
   id: number;
 
-  @Column({ name: 'Date', type: 'date' })
-  date: string;
+  @Column({ name: 'Fecha', type: 'date' })
+  date: Date;
 
-  @Column({ name: 'Status', length: 50 })
+  @Column({ name: 'Estado', length: 50 })
   status: string;
 
-  @Column({ name: 'FK_Client_ID' })
+  @Column({ name: 'FK_ID_Cliente' })
   clientId: number;
 
-  @Column({ name: 'Total_Amount', type: 'decimal', precision: 18, scale: 2 })
+  @Column({ name: 'Monto_Total', type: 'decimal', precision: 18, scale: 2 })
   totalAmount: number;
 }
