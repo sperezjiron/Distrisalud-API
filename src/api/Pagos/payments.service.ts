@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Payment } from './entities/payment.entity';
@@ -9,28 +9,31 @@ import { UpdatePaymentDto } from './dto/update-payment.dto';
 export class PaymentsService {
   constructor(
     @InjectRepository(Payment)
-    private readonly paymentsRepository: Repository<Payment>,
+    private readonly paymentRepo: Repository<Payment>,
   ) {}
 
-  create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
-    const payment = this.paymentsRepository.create(createPaymentDto);
-    return this.paymentsRepository.save(payment);
+  create(dto: CreatePaymentDto) {
+    const payment = this.paymentRepo.create(dto);
+    return this.paymentRepo.save(payment);
   }
 
-  findAll(): Promise<Payment[]> {
-    return this.paymentsRepository.find();
+  findAll() {
+    return this.paymentRepo.find();
   }
 
-  findOne(id: number): Promise<Payment> {
-    return this.paymentsRepository.findOneBy({ id });
+  async findOne(id: number) {
+    const payment = await this.paymentRepo.findOne({ where: { id } });
+    if (!payment) throw new NotFoundException(`Pago con ID ${id} no encontrado`);
+    return payment;
   }
 
-  async update(id: number, updatePaymentDto: UpdatePaymentDto): Promise<Payment> {
-    await this.paymentsRepository.update(id, updatePaymentDto);
+  async update(id: number, dto: UpdatePaymentDto) {
+    await this.paymentRepo.update(id, dto);
     return this.findOne(id);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.paymentsRepository.delete(id);
+  async remove(id: number) {
+    const payment = await this.findOne(id);
+    return this.paymentRepo.remove(payment);
   }
 }

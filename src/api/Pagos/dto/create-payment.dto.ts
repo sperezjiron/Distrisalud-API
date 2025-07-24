@@ -1,19 +1,31 @@
-import { IsDateString, IsNumber, IsString, Min, IsUrl } from 'class-validator';
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  IsNumber,
+  IsDateString,
+  MaxLength,
+  Min,
+} from 'class-validator';
 
 export class CreatePaymentDto {
-  @IsNumber()
+  @IsInt()
   orderId: number;
 
-  @IsNumber()
+  @IsInt()
   methodId: number;
 
-  @IsUrl()
-  receiptUrl: string;
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  receiptUrl?: string;
 
   @IsString()
+  @MaxLength(50)
   paymentStatus: string;
 
   @IsString()
+  @MaxLength(50)
   paymentType: string;
 
   @IsDateString()

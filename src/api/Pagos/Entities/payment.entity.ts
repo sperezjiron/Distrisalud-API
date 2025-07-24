@@ -11,7 +11,7 @@ export class Payment {
   @Column({ name: 'FK_ID_Metodo' })
   methodId: number;
 
-  @Column({ name: 'Comprobante_URL', length: 500 })
+  @Column({ name: 'Comprobante_URL', length: 500, nullable: true })
   receiptUrl: string;
 
   @Column({ name: 'Estado_Pago', length: 50 })
@@ -20,8 +20,8 @@ export class Payment {
   @Column({ name: 'Tipo_Pago', length: 50 })
   paymentType: string;
 
-  @Column({ name: 'Fecha_Pago', type: 'date' })
-  paymentDate: string;
+  @Column({ name: 'Fecha_Pago', type: 'datetime' }) // se recomienda datetime en lugar de solo date
+  paymentDate: Date;
 
   @Column({ name: 'Monto_Pago', type: 'decimal', precision: 18, scale: 2 })
   amount: number;

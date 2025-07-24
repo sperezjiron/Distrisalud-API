@@ -7,6 +7,12 @@ import { OrdersModule } from './api/Pedidos/orders.module';
 import { CustomersModule } from './api/Clientes/customers.module';
 import { AdminsModule } from './api/Admin/admins.module';
 import { CategoryModule } from './api/Categoria/category.module';
+import { RolModule } from './api/Roles/rol.module';
+import { DetallePedidoModule } from './api/Detalles/detallepedido.module';  
+import { PaymentsModule } from './api/Pagos/payments.module'; 
+import { MetodosModule } from './api/Metodo/metodos.module';
+import { BitacoraModule } from './api/Bitacora/bitacora.module';
+import { PromocionAplicadaModule } from './api/PromoAplicada/promocion-aplicada.module';  
 
 @Module({
   imports: [
@@ -32,6 +38,12 @@ import { CategoryModule } from './api/Categoria/category.module';
     CustomersModule,
     AdminsModule,
     CategoryModule,
+    RolModule,
+    DetallePedidoModule,
+    PaymentsModule,
+    MetodosModule,
+    BitacoraModule,
+    PromocionAplicadaModule,
   ],
 })
 export class AppModule {}
