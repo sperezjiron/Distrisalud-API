@@ -1,7 +1,7 @@
-import { IsDateString, IsNumber, IsString, Min } from 'class-validator';
+import { IsDate, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsDateString()
+  @IsString()
   date: string;
 
   @IsString()

@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString, IsNumber } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
@@ -6,5 +6,10 @@ export class CreateUserDto {
 
   @IsString()
   pass: string;
+
+  @IsNumber()
+  rolId: number;
+
+  @IsNumber()
+  estado: number;
 }
-// This DTO is used to validate the data when creating a new user.
