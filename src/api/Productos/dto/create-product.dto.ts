@@ -1,4 +1,5 @@
-import { IsString, IsNumber, Min, IsDateString, IsUrl } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsString, IsNumber, Min, IsDate } from 'class-validator';
 
 export class CreateProductDto {
   @IsNumber()
@@ -24,6 +25,7 @@ export class CreateProductDto {
   @Min(0)
   stock: number;
 
-  @IsDateString()
-  entryDate: string;
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
+  entryDate: Date;
 }

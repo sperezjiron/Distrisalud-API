@@ -1,4 +1,5 @@
-import { IsDateString, IsEmail, IsInt, IsString, Length } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsDate, IsEmail, IsInt, IsString, Length } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsInt()
@@ -34,9 +35,11 @@ export class CreateCustomerDto {
   @IsString() @Length(1, 50)
   estado: string;
 
-  @IsDateString()
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
   fechaCreacion: Date;
 
-  @IsDateString()
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
   fechaUltimoIngreso: Date;
 }

@@ -1,8 +1,10 @@
+import { Transform } from 'class-transformer';
 import { IsDate, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsString()
-  date: string;
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
+  date: Date;
 
   @IsString()
   status: string;

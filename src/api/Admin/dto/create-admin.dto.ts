@@ -1,4 +1,4 @@
-import { IsInt, IsString, Length } from 'class-validator';
+import { IsInt, IsString, Length, Min, Max } from 'class-validator';
 
 export class CreateAdminDto {
   @IsString()
@@ -8,6 +8,8 @@ export class CreateAdminDto {
   @IsInt()
   userId: number;
 
-  // El tipo binario puede representar un estado (ej. activo/inactivo)
-  estado: Buffer;
+  @IsInt()
+  @Min(0)
+  @Max(1)
+  estado: number; // ✅ Cambiar de Buffer a number
 }

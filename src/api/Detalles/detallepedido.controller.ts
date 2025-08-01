@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common';
 import { DetallePedidoService } from './detallepedido.service';
 import { CreateDetallePedidoDto } from './dto/create-detallepedido.dto';
 import { UpdateDetallePedidoDto } from './dto/update-detallepedido.dto';
@@ -15,6 +15,11 @@ export class DetallePedidoController {
   @Get()
   findAll() {
     return this.detallePedidoService.findAll();
+  }
+
+    @Get('by-pedido/:pedidoId')
+  async findByPedidoId(@Param('pedidoId', ParseIntPipe) pedidoId: number) {
+    return this.detallePedidoService.findByPedidoId(pedidoId);
   }
 
   @Get(':id')

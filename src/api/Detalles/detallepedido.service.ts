@@ -32,6 +32,12 @@ export class DetallePedidoService {
     return this.findOne(id);
   }
 
+  async findByPedidoId(pedidoId: number): Promise<DetallePedido[]> {
+  return this.detallePedidoRepository.find({
+    where: { pedidoId },
+  });
+}
+
   async remove(id: number): Promise<void> {
     const detalle = await this.findOne(id);
     await this.detallePedidoRepository.remove(detalle);

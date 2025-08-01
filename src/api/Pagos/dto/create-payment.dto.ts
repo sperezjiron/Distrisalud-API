@@ -1,9 +1,10 @@
+import { Transform } from 'class-transformer';  
 import {
   IsInt,
   IsOptional,
   IsString,
   IsNumber,
-  IsDateString,
+  IsDate,
   MaxLength,
   Min,
 } from 'class-validator';
@@ -28,8 +29,9 @@ export class CreatePaymentDto {
   @MaxLength(50)
   paymentType: string;
 
-  @IsDateString()
-  paymentDate: string;
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
+  paymentDate: Date;
 
   @IsNumber()
   @Min(0)

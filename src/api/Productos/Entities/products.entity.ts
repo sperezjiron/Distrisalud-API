@@ -27,5 +27,5 @@ export class Product {
   stock: number;
 
   @Column({ name: 'Fecha_Ingreso', type: 'date' })
-  entryDate: string;
+  entryDate: Date;
 }

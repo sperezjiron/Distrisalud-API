@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
 import { RolService } from './rol.service';
 import { CreateRolDto } from './dto/create-rol.dto';
 import { UpdateRolDto } from './dto/update-rol.dto';
@@ -22,13 +22,15 @@ export class RolController {
     return this.rolService.findOne(+id);
   }
 
-  @Put(':id')
+ 
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateRolDto: UpdateRolDto) {
-    return this.rolService.update(+id, updateRolDto);
-  }
+  return this.rolService.update(+id, updateRolDto);
+ }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.rolService.remove(+id);
   }
 }
+

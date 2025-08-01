@@ -1,4 +1,5 @@
-import { IsInt, IsString, MaxLength, IsDateString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsInt, IsString, MaxLength, IsDate } from 'class-validator';
 
 export class CreateBitacoraDto {
   @IsInt()
@@ -20,6 +21,7 @@ export class CreateBitacoraDto {
   @MaxLength(150)
   valorDespues: string;
 
-  @IsDateString()
-  fechaHora: string;
+  @Transform(({ value }) => new Date(value))
+  @IsDate()
+  fechaHora: Date;
 }
