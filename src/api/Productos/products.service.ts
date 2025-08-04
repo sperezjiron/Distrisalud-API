@@ -19,11 +19,8 @@ async create(createProductDto: CreateProductDto): Promise<Product> {
 }
 
 async update(id: number, updateProductDto: UpdateProductDto): Promise<Product> {
-  await this.productRepository.update(id, {
-    ...updateProductDto,
-    entryDate: updateProductDto.entryDate.toISOString(), // transforma Date a string
-  });
-  return this.findOne(id);
+ await this.productRepository.update(id, updateProductDto);
+ return this.findOne(id);
 }
 
 

@@ -13,11 +13,13 @@ import { PaymentsModule } from './api/Pagos/payments.module';
 import { MetodosModule } from './api/Metodo/metodos.module';
 import { BitacoraModule } from './api/Bitacora/bitacora.module';
 import { PromocionAplicadaModule } from './api/PromoAplicada/promocion-aplicada.module';  
+import { AuthModule } from './api/auth/auth.module';
+import { ReportsModule } from './api/Reportes/reports.module';
 
 @Module({
   imports: [
 
-      TypeOrmModule.forRoot({
+     TypeOrmModule.forRoot({
       type: 'mssql',
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
@@ -44,6 +46,8 @@ import { PromocionAplicadaModule } from './api/PromoAplicada/promocion-aplicada.
     MetodosModule,
     BitacoraModule,
     PromocionAplicadaModule,
+    AuthModule, // Ensure AuthModule is imported
+    ReportsModule, // Import the ReportsModule
   ],
 })
 export class AppModule {}

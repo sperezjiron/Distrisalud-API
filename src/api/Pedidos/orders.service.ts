@@ -30,6 +30,20 @@ export class OrdersService {
     return this.findOne(id);
   }
 
+ async getMonthlySales(): Promise<{ month: string; total: number }[]> {
+  const result = await this.ordersRepository.query(`
+    SELECT 
+      FORMAT(Fecha, 'MMM', 'es-ES') AS month, 
+      SUM(Monto_Total) AS total 
+    FROM  PEDIDO
+    GROUP BY FORMAT(Fecha, 'MMM', 'es-ES'), MONTH(Fecha) 
+    ORDER BY MONTH(Fecha)
+  `);
+
+  return result;
+}
+
+
   async remove(id: number): Promise<void> {
     await this.ordersRepository.delete(id);
   }
